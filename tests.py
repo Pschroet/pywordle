@@ -50,15 +50,25 @@ class Test(unittest.TestCase):
         guess_result = h._check_guess("toot")
         self.assertEqual(guess_result, ["*", "*", "*", "*"])
 
-    def test_PalindromeCorrect(self):
+    def test_palindromeCorrect(self):
         h = inputHandler(tries=1, word="racecar")
         guess_result = h._check_guess("racecar")
         self.assertEqual(guess_result, ["+", "+", "+", "+", "+", "+", "+"])
 
-    def test_PalindromeWrong(self):
+    def test_palindromeWrong(self):
         h = inputHandler(tries=1, word="racecar")
         guess_result = h._check_guess("acrerca")
         self.assertEqual(guess_result, ["*", "*", "*", "+", "*", "*", "*"])
+
+    def test_lengthWrong(self):
+        h = inputHandler(tries=1, word="one")
+        guess_result = h._check_guess("on")
+        self.assertEqual(guess_result, None)
+
+    def test_nonAlpha(self):
+        h = inputHandler(tries=1, word="one")
+        guess_result = h._check_guess("1")
+        self.assertEqual(guess_result, None)
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
