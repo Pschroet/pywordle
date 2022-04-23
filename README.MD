@@ -11,3 +11,8 @@ Start by running
 ```
 python3 main.py
 ```
+
+Run the tests with
+```
+python tests.py
+```
