@@ -8,12 +8,16 @@ import os
 
 class inputHandler():
 
-    def __init__(self, tries=5, word=""):
+    def __init__(self, tries=5, word="", show_exluded=False, show_hits=False):
         self.tries = tries
         self.not_guessed = True
         self._searched_word = str(word).lower()
         self.word_length = len(self._searched_word)
         self.all_results = []
+        self.show_exluded = show_exluded
+        self.excluded = []
+        self.show_hits = show_hits
+        self.guessed_parts = ["" for x in range(0, self.word_length)]
 
     def _check_guess(self, guess):
         if guess.isalpha() and self.word_length == len(guess):
@@ -26,6 +30,7 @@ class inputHandler():
                     result.append("+")
                     hits.append(i)
                     tmp_word[i] = ""
+                    self.guessed_parts[i] = guess[i]
                 else:
                     result.append("")
             #print("After hits:")
@@ -44,7 +49,7 @@ class inputHandler():
                     hits.append(i)
                     tmp_word[found_letter] = "*"
                 except ValueError:
-                    pass
+                    self.excluded.append(guess[i])
             #print("After occurs:")
             #print("tmp_word: " + str(tmp_word))
             #print("hits: " + str(hits))
@@ -72,10 +77,13 @@ class inputHandler():
                         print(r)
                 else:
                     self.tries -= 1
-                    print(str(guess_result) + os.linesep + str(self.tries) + " guesses left.")
+                    print(str(guess_result))
+                    if self.show_hits: print("Correct letters so far: " + str(self.guessed_parts))
+                    if self.show_exluded: print("Not occurring letters so far: " + str(self.excluded))
+                    print(str(self.tries) + " guesses left.")
             else:
                 if guess.isalpha():
-                    print("Only letter may be entered. Try again.")
+                    print("Only letters may be entered. Try again.")
                 elif self.word_length == len(guess):
                     print("Your guess is not " + str(self.word_length) + " characters long. Try again.")
         if self.tries <= 0:

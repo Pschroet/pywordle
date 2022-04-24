@@ -9,7 +9,6 @@ import unittest
 
 class Test(unittest.TestCase):
 
-
     def test_correctGuess(self):
         h = inputHandler(tries=1, word="test")
         guess_result = h._check_guess("test")
@@ -79,6 +78,16 @@ class Test(unittest.TestCase):
         h = inputHandler(tries=1, word="shine")
         guess_result = h._check_guess("sesne")
         self.assertNotEqual(guess_result, ['+', '*', '*', '+', '+'])
+
+    def test_showExcluded(self):
+        h = inputHandler(tries=1, word="trabi", show_exluded=True)
+        h._check_guess("tgwhi")
+        self.assertEqual(h.excluded, ['g', 'w', 'h'])
+
+    def test_showHits(self):
+        h = inputHandler(tries=1, word="trabi", show_hits=True)
+        h._check_guess("tgwhi")
+        self.assertEqual(h.guessed_parts, ['t', '', '', '', 'i'])
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
