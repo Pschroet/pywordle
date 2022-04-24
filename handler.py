@@ -28,20 +28,27 @@ class inputHandler():
                     tmp_word[i] = ""
                 else:
                     result.append("")
-            #then for the lefts characters, check if they appear on the rest
-            rest = [x for x in list(range(0, self.word_length)) if x not in hits]
             #print("After hits:")
             #print("tmp_word: " + str(tmp_word))
+            #print("hits: " + str(hits))
+            #then for the lefts characters, check if they appear on the rest
+            rest = [x for x in list(range(0, self.word_length)) if x not in hits]
             #print("rest: " + str(rest))
+            tmp_searched_word = list(tmp_word)
+            #print("tmp_searched_word: " + str(tmp_searched_word))
             for i in rest:
-                found_letter = self._searched_word.find(guess[i])
-                if found_letter > -1:
+                try:
+                    found_letter = tmp_searched_word.index(guess[i])
+                    #print("Found letter " + str(guess[i]) + " in tmp_searched_word at position " + str(found_letter))
                     result[i] = "*"
                     hits.append(i)
                     tmp_word[found_letter] = "*"
-            rest = [x for x in list(range(0, self.word_length)) if x not in hits]
+                except ValueError:
+                    pass
             #print("After occurs:")
             #print("tmp_word: " + str(tmp_word))
+            #print("hits: " + str(hits))
+            rest = [x for x in list(range(0, self.word_length)) if x not in hits]
             #print("rest: " + str(rest))
             for i in rest:
                 result[i] = "-"

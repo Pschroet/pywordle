@@ -15,6 +15,11 @@ class Test(unittest.TestCase):
         guess_result = h._check_guess("test")
         self.assertEqual(guess_result, ["+", "+", "+", "+"])
 
+    def test_correctGuess1(self):
+        h = inputHandler(tries=1, word="sense")
+        guess_result = h._check_guess("sense")
+        self.assertEqual(guess_result, ["+", "+", "+", "+", "+"])
+
     def test_completelyWrongGuess(self):
         h = inputHandler(tries=1, word="wrong")
         guess_result = h._check_guess("qetzu")
@@ -69,6 +74,11 @@ class Test(unittest.TestCase):
         h = inputHandler(tries=1, word="one")
         guess_result = h._check_guess("1")
         self.assertEqual(guess_result, None)
+
+    def test_falseDuplicates(self):
+        h = inputHandler(tries=1, word="shine")
+        guess_result = h._check_guess("sesne")
+        self.assertNotEqual(guess_result, ['+', '*', '*', '+', '+'])
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
