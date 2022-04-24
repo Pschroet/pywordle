@@ -82,9 +82,9 @@ class inputHandler():
                     if self.show_exluded: print("Not occurring letters so far: " + str(self.excluded))
                     print(str(self.tries) + " guesses left.")
             else:
-                if guess.isalpha():
+                if not guess.isalpha():
                     print("Only letters may be entered. Try again.")
-                elif self.word_length == len(guess):
+                elif self.word_length != len(guess):
                     print("Your guess is not " + str(self.word_length) + " characters long. Try again.")
         if self.tries <= 0:
             print("Oh, no. You lost. The searched word was " + str(self._searched_word) + ".")
