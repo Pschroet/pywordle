@@ -79,6 +79,21 @@ class Test(unittest.TestCase):
         guess_result = h._check_guess("sesne")
         self.assertNotEqual(guess_result, ['+', '*', '*', '+', '+'])
 
+    def test_falseDuplicates1(self):
+        h = inputHandler(tries=1, word="rifle")
+        guess_result = h._check_guess("refer")
+        self.assertEqual(guess_result, ['+', '*', '+', '-', '-'])
+
+    def test_falseDuplicates2(self):
+        h = inputHandler(tries=1, word="rifle")
+        guess_result = h._check_guess("refre")
+        self.assertEqual(guess_result, ['+', '-', '+', '-', '+'])
+
+    def test_falseDuplicates3(self):
+        h = inputHandler(tries=1, word="rifle")
+        guess_result = h._check_guess("riflr")
+        self.assertEqual(guess_result, ['+', '+', '+', '+', '-'])
+
     def test_showExcluded(self):
         h = inputHandler(tries=1, word="trabi", show_exluded=True)
         h._check_guess("tgwhi")

@@ -48,6 +48,8 @@ class inputHandler():
                     result[i] = "*"
                     hits.append(i)
                     tmp_word[found_letter] = "*"
+                    #remove the letter to prevent duplicate finds
+                    tmp_searched_word[found_letter] = ""
                 except ValueError:
                     self.excluded.add(guess[i])
             #print("After occurs:")
