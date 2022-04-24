@@ -15,7 +15,7 @@ class inputHandler():
         self.word_length = len(self._searched_word)
         self.all_results = []
         self.show_exluded = show_exluded
-        self.excluded = []
+        self.excluded = set()
         self.show_hits = show_hits
         self.guessed_parts = ["" for x in range(0, self.word_length)]
 
@@ -49,7 +49,7 @@ class inputHandler():
                     hits.append(i)
                     tmp_word[found_letter] = "*"
                 except ValueError:
-                    self.excluded.append(guess[i])
+                    self.excluded.add(guess[i])
             #print("After occurs:")
             #print("tmp_word: " + str(tmp_word))
             #print("hits: " + str(hits))

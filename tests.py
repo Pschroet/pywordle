@@ -82,7 +82,12 @@ class Test(unittest.TestCase):
     def test_showExcluded(self):
         h = inputHandler(tries=1, word="trabi", show_exluded=True)
         h._check_guess("tgwhi")
-        self.assertEqual(h.excluded, ['g', 'w', 'h'])
+        self.assertEqual(h.excluded, set(['g', 'w', 'h']))
+
+    def test_showExcludedDuplicates(self):
+        h = inputHandler(tries=1, word="trabi", show_exluded=True)
+        h._check_guess("twwhi")
+        self.assertEqual(h.excluded, set(['w', 'h']))
 
     def test_showHits(self):
         h = inputHandler(tries=1, word="trabi", show_hits=True)
