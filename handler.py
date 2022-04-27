@@ -46,6 +46,7 @@ class inputHandler():
                     found_letter = tmp_searched_word.index(guess[i])
                     #print("Found letter " + str(guess[i]) + " in tmp_searched_word at position " + str(found_letter))
                     result[i] = "*"
+                    self.guessed_parts[i] = "*"
                     hits.append(i)
                     tmp_word[found_letter] = "*"
                     #remove the letter to prevent duplicate finds
@@ -59,6 +60,7 @@ class inputHandler():
             #print("rest: " + str(rest))
             for i in rest:
                 result[i] = "-"
+                self.guessed_parts[i] = "-"
             self.all_results.append(result)
             return result
         else:
@@ -79,8 +81,10 @@ class inputHandler():
                         print(r)
                 else:
                     self.tries -= 1
-                    print(str(guess_result))
-                    if self.show_hits: print("Correct letters so far: " + str(self.guessed_parts))
+                    if self.show_hits:
+                        print(str(self.guessed_parts))
+                    else:
+                        print(str(guess_result))
                     if self.show_exluded: print("Not occurring letters so far: " + str(self.excluded))
                     print(str(self.tries) + " guesses left.")
             else:
