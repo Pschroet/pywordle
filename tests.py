@@ -113,7 +113,7 @@ class Test(unittest.TestCase):
     def test_showHits(self):
         h = inputHandler(tries=1, word="trabi", show_hits=True)
         h._check_guess("tgwhi")
-        self.assertEqual(h.guessed_parts, ['t', '', '', '', 'i'])
+        self.assertEqual(h.guessed_parts, ['t', '-', '-', '-', 'i'])
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
