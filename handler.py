@@ -52,7 +52,7 @@ class inputHandler():
                     #remove the letter to prevent duplicate finds
                     tmp_searched_word[found_letter] = ""
                 except ValueError:
-                    self.excluded.add(guess[i])
+                    if guess[i] not in self.guessed_parts: self.excluded.add(guess[i])
             #print("After occurs:")
             #print("tmp_word: " + str(tmp_word))
             #print("hits: " + str(hits))
