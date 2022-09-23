@@ -76,7 +76,7 @@ class inputHandler():
             if guess_result is not None:
                 if "-" not in guess_result and "*" not in guess_result:
                     self.not_guessed = False
-                    print("Congratulations! You got the word: " + str(self._searched_word) + ". You had " + str(self.tries) + " guesses left.")
+                    print("Congratulations! You got the word: " + str(self._searched_word) + ". " + str("On your final guess!") if (self.tries - 1) == 0 else "You had " + str(self.tries - 1) + " guess(es) left.")
                     for r in self.all_results:
                         print(r)
                 else:
