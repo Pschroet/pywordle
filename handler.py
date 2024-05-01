@@ -33,18 +33,12 @@ class inputHandler():
                     self.guessed_parts[i] = guess[i]
                 else:
                     result.append("")
-            #print("After hits:")
-            #print("tmp_word: " + str(tmp_word))
-            #print("hits: " + str(hits))
             #then for the lefts characters, check if they appear on the rest
             rest = [x for x in list(range(0, self.word_length)) if x not in hits]
-            #print("rest: " + str(rest))
             tmp_searched_word = list(tmp_word)
-            #print("tmp_searched_word: " + str(tmp_searched_word))
             for i in rest:
                 try:
                     found_letter = tmp_searched_word.index(guess[i])
-                    #print("Found letter " + str(guess[i]) + " in tmp_searched_word at position " + str(found_letter))
                     result[i] = "*"
                     self.guessed_parts[i] = "*"
                     hits.append(i)
@@ -53,11 +47,7 @@ class inputHandler():
                     tmp_searched_word[found_letter] = ""
                 except ValueError:
                     if guess[i] not in self.guessed_parts: self.excluded.add(guess[i])
-            #print("After occurs:")
-            #print("tmp_word: " + str(tmp_word))
-            #print("hits: " + str(hits))
             rest = [x for x in list(range(0, self.word_length)) if x not in hits]
-            #print("rest: " + str(rest))
             for i in rest:
                 result[i] = "-"
                 self.guessed_parts[i] = "-"
@@ -67,7 +57,6 @@ class inputHandler():
             return None
 
     def start(self):
-        #print("Searched word: " + str(self._searched_word))
         print("The searched word has a length of " + str(self.word_length) + ".")
         while self.tries > 0 and self.not_guessed:
             guess = str(input("Your guess: ")).lower()
